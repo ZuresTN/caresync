@@ -1,0 +1,7 @@
+target/
+generated-prescriptions/
+rapport-overleaf/
+*.class
+*.pdf
+.env
+src/main/resources/database.properties

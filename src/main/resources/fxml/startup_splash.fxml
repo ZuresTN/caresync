@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import java.lang.Double?>
+
+<StackPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.caresync.controllers.StartupSplashController"
+           prefWidth="1080" prefHeight="720" styleClass="splash">
+    <VBox fx:id="splashContent" alignment="CENTER" spacing="24">
+        <StackPane fx:id="splashCard" prefWidth="190" prefHeight="190" styleClass="splash-card">
+            <Circle fx:id="splashRingOuter" radius="72" fill="TRANSPARENT" stroke="#0f6b75" strokeWidth="5">
+                <strokeDashArray>
+                    <Double fx:value="18"/>
+                    <Double fx:value="12"/>
+                </strokeDashArray>
+            </Circle>
+            <Circle fx:id="splashRingMiddle" radius="50" fill="TRANSPARENT" stroke="#2b8c7f" strokeWidth="4">
+                <strokeDashArray>
+                    <Double fx:value="12"/>
+                    <Double fx:value="10"/>
+                </strokeDashArray>
+            </Circle>
+            <StackPane prefWidth="100" prefHeight="100" maxWidth="100" maxHeight="100" styleClass="logo-badge, splash-logo-badge">
+                <ImageView fx:id="splashLogo" fitWidth="72" fitHeight="72" preserveRatio="true" smooth="true" styleClass="logo-image">
+                    <image>
+                        <Image url="@../images/caresync-logo-mark.png"/>
+                    </image>
+                </ImageView>
+            </StackPane>
+        </StackPane>
+        <Label text="CareSync" styleClass="brand-title"/>
+        <Label fx:id="splashStatusLabel" text="Starting secure clinic workspace..." styleClass="brand-subtitle"/>
+        <ProgressBar fx:id="splashProgress" prefWidth="360" progress="0"/>
+    </VBox>
+    <padding>
+        <Insets top="40" right="40" bottom="40" left="40"/>
+    </padding>
+</StackPane>
