@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.caresync.controllers.SettingsController"
+      spacing="18" styleClass="page management-page">
+    <HBox alignment="CENTER_LEFT" spacing="14">
+        <VBox spacing="4">
+            <Label text="System Settings" styleClass="page-title"/>
+            <Label text="Clinic identity, Gmail SMTP, and patient appointment reminder template" styleClass="page-subtitle"/>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS"/>
+        <VBox alignment="CENTER_RIGHT" spacing="3" styleClass="panel-quiet">
+            <padding><Insets top="10" right="14" bottom="10" left="14"/></padding>
+            <Label text="Email" styleClass="stat-label"/>
+            <Label text="Gmail ready" style="-fx-font-weight: 900; -fx-text-fill: #147f86;"/>
+        </VBox>
+    </HBox>
+    <HBox spacing="16" VBox.vgrow="ALWAYS">
+        <VBox spacing="12" styleClass="panel" HBox.hgrow="ALWAYS">
+            <padding><Insets top="18" right="18" bottom="18" left="18"/></padding>
+            <VBox spacing="3">
+                <Label text="Patient Reminder" styleClass="section-title"/>
+                <Label text="Available placeholders: {patient}, {doctor}, {date}, {time}, {clinic}, {clinic_phone}, {clinic_address}" styleClass="muted" wrapText="true"/>
+            </VBox>
+            <VBox spacing="10" styleClass="form-section">
+                <Label text="Clinic Identity" styleClass="stat-label"/>
+                <TextField fx:id="clinicNameField" promptText="Clinic name"/>
+                <TextField fx:id="clinicPhoneField" promptText="Clinic phone"/>
+                <TextField fx:id="clinicAddressField" promptText="Clinic address"/>
+            </VBox>
+            <VBox spacing="10" styleClass="form-section" VBox.vgrow="ALWAYS">
+                <HBox alignment="CENTER_LEFT" spacing="8">
+                    <Label text="Template" styleClass="stat-label"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Button text="Use CareSync Template" onAction="#useDefaultReminderTemplate" styleClass="secondary-button"/>
+                </HBox>
+                <TextField fx:id="reminderSubjectField" promptText="Email subject"/>
+                <HBox spacing="8">
+                    <TextField fx:id="reminderLeadHoursField" promptText="Hours before appointment" HBox.hgrow="ALWAYS"/>
+                    <Label text="hours before appointment" styleClass="muted"/>
+                </HBox>
+                <TextArea fx:id="reminderTemplateArea" promptText="Template with placeholders" prefRowCount="13" VBox.vgrow="ALWAYS"/>
+            </VBox>
+        </VBox>
+        <VBox spacing="12" minWidth="420" prefWidth="460" styleClass="panel form-panel">
+            <padding><Insets top="18" right="18" bottom="18" left="18"/></padding>
+            <VBox spacing="3">
+                <Label text="Gmail SMTP" styleClass="section-title"/>
+                <Label text="Use a Google app password for Gmail. Normal Gmail passwords are blocked by Google." styleClass="muted" wrapText="true"/>
+            </VBox>
+            <VBox spacing="10" styleClass="form-section">
+                <HBox alignment="CENTER_LEFT" spacing="8">
+                    <CheckBox fx:id="smtpEnabledCheck" text="Enable email reminders"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Button text="Use Gmail" onAction="#applyGmailDefaults" styleClass="secondary-button"/>
+                </HBox>
+                <GridPane hgap="8" vgap="8">
+                    <TextField fx:id="smtpHostField" promptText="Host" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                    <TextField fx:id="smtpPortField" promptText="Port" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                    <TextField fx:id="smtpUsernameField" promptText="Gmail address" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                    <PasswordField fx:id="smtpPasswordField" promptText="Google app password" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                </GridPane>
+                <TextField fx:id="smtpFromField" promptText="From address"/>
+                <TextField fx:id="smtpFromNameField" promptText="From name, for example CareSync"/>
+                <CheckBox fx:id="smtpTlsCheck" text="Use TLS"/>
+            </VBox>
+            <VBox spacing="10" styleClass="form-section">
+                <Label text="Test Email" styleClass="stat-label"/>
+                <TextField fx:id="smtpTestRecipientField" promptText="Destination email"/>
+                <Button text="Send Test Email" onAction="#sendTestEmail" styleClass="secondary-button" maxWidth="Infinity"/>
+                <Button text="Send Test Prescription PDF" onAction="#sendTestPrescriptionEmail" styleClass="secondary-button" maxWidth="Infinity"/>
+            </VBox>
+            <VBox spacing="10" styleClass="form-section">
+                <Label text="Showcase Dev Tools" styleClass="stat-label"/>
+                <Label text="Uses the destination email above for video demos." styleClass="muted" wrapText="true"/>
+                <Button text="Dev Send Real Reminder" onAction="#sendShowcaseReminderEmail" styleClass="primary-button" maxWidth="Infinity"/>
+                <Button text="Dev Send Real Prescription PDF" onAction="#sendShowcasePrescriptionEmail" styleClass="primary-button" maxWidth="Infinity"/>
+            </VBox>
+            <Button text="Save Settings" onAction="#saveSettings" styleClass="primary-button"/>
+            <Label fx:id="statusLabel" wrapText="true"/>
+        </VBox>
+    </HBox>
+</VBox>
