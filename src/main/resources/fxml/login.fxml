@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane fx:id="root" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.caresync.controllers.LoginController"
+           prefWidth="1080" prefHeight="720" styleClass="login-root">
+    <HBox fx:id="loginPanel" maxWidth="900" maxHeight="560" spacing="0" styleClass="login-shell">
+        <StackPane prefWidth="430" styleClass="login-visual-pane">
+            <VBox alignment="CENTER_LEFT" spacing="18" styleClass="login-brand-block">
+                <StackPane prefWidth="76" prefHeight="76" maxWidth="76" maxHeight="76" styleClass="logo-badge, login-logo-badge">
+                    <ImageView fitWidth="54" fitHeight="54" preserveRatio="true" smooth="true" styleClass="logo-image">
+                        <image>
+                            <Image url="@../images/caresync-logo-mark.png"/>
+                        </image>
+                    </ImageView>
+                </StackPane>
+                <VBox spacing="7">
+                    <Label text="CareSync" styleClass="login-brand-title"/>
+                    <Label text="Clinic workspace" styleClass="login-brand-subtitle"/>
+                </VBox>
+                <VBox spacing="10" styleClass="login-signal-list">
+                    <HBox alignment="CENTER_LEFT" spacing="10" styleClass="login-signal-row">
+                        <Region prefWidth="9" prefHeight="9" styleClass="status-dot"/>
+                        <Label text="Database online"/>
+                    </HBox>
+                    <HBox alignment="CENTER_LEFT" spacing="10" styleClass="login-signal-row">
+                        <Region prefWidth="9" prefHeight="9" styleClass="login-signal-dot"/>
+                        <Label text="Role based access"/>
+                    </HBox>
+                    <HBox alignment="CENTER_LEFT" spacing="10" styleClass="login-signal-row">
+                        <Region prefWidth="9" prefHeight="9" styleClass="login-signal-dot-amber"/>
+                        <Label text="Appointments ready"/>
+                    </HBox>
+                </VBox>
+            </VBox>
+        </StackPane>
+
+        <VBox alignment="CENTER_LEFT" prefWidth="470" spacing="18" styleClass="login-form-pane">
+            <padding>
+                <Insets top="44" right="48" bottom="44" left="48"/>
+            </padding>
+            <VBox spacing="6">
+                <Label text="Welcome back" styleClass="login-title"/>
+                <Label text="Sign in to continue to CareSync." styleClass="login-copy"/>
+            </VBox>
+            <VBox spacing="12">
+                <VBox spacing="6">
+                    <Label text="Username" styleClass="login-field-label"/>
+                    <TextField fx:id="usernameField" promptText="Enter username" styleClass="login-input"/>
+                </VBox>
+                <VBox spacing="6">
+                    <Label text="Password" styleClass="login-field-label"/>
+                    <PasswordField fx:id="passwordField" promptText="Enter password" onAction="#handleLogin" styleClass="login-input"/>
+                </VBox>
+            </VBox>
+            <Button fx:id="loginButton" text="Sign in" maxWidth="Infinity" defaultButton="true" onAction="#handleLogin" styleClass="login-primary-button"/>
+            <Button text="Need password help" maxWidth="Infinity" onAction="#handleResetPassword" styleClass="login-help-button"/>
+            <Label fx:id="messageLabel" minHeight="24" wrapText="true" styleClass="login-message"/>
+        </VBox>
+    </HBox>
+</StackPane>
