@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.caresync.controllers.AdminDashboardController"
+      spacing="20" styleClass="page">
+    <HBox alignment="CENTER_LEFT" spacing="20" styleClass="dashboard-hero">
+        <padding><Insets top="22" right="24" bottom="22" left="24"/></padding>
+        <VBox spacing="16" HBox.hgrow="ALWAYS">
+            <VBox spacing="5">
+                <Label text="Admin Dashboard" styleClass="dashboard-hero-title"/>
+                <Label text="Clinic operations, access, and appointment pipeline" styleClass="dashboard-hero-copy"/>
+            </VBox>
+            <HBox spacing="12">
+                <VBox spacing="4" styleClass="dashboard-hero-kpi">
+                    <Label text="Today" styleClass="dashboard-hero-kpi-label"/>
+                    <Label fx:id="todayAppointmentsLabel" text="0" styleClass="dashboard-hero-kpi-value"/>
+                    <Label text="Appointments" styleClass="dashboard-hero-kpi-note"/>
+                </VBox>
+                <VBox spacing="4" styleClass="dashboard-hero-kpi">
+                    <Label text="Open Pipeline" styleClass="dashboard-hero-kpi-label"/>
+                    <Label fx:id="heroOpenPipelineLabel" text="0" styleClass="dashboard-hero-kpi-value"/>
+                    <Label text="Pending and scheduled" styleClass="dashboard-hero-kpi-note"/>
+                </VBox>
+            </HBox>
+        </VBox>
+        <StackPane prefWidth="128" prefHeight="128" maxWidth="128" maxHeight="128" styleClass="logo-badge, dashboard-logo-badge">
+            <ImageView fitWidth="92" fitHeight="92" preserveRatio="true" smooth="true" styleClass="logo-image">
+                <image>
+                    <Image url="@../images/caresync-logo-mark.png"/>
+                </image>
+            </ImageView>
+        </StackPane>
+    </HBox>
+
+    <HBox spacing="14">
+        <VBox fx:id="cardUsers" spacing="9" styleClass="stat-card" HBox.hgrow="ALWAYS">
+            <padding><Insets top="16" right="16" bottom="16" left="16"/></padding>
+            <Region styleClass="card-accent" style="-fx-background-color: #26a6a6;"/>
+            <Label text="Users" styleClass="stat-label"/>
+            <Label fx:id="totalUsersLabel" text="0" styleClass="stat-value"/>
+            <Label text="Access accounts" styleClass="stat-note"/>
+        </VBox>
+        <VBox fx:id="cardDoctors" spacing="9" styleClass="stat-card" HBox.hgrow="ALWAYS">
+            <padding><Insets top="16" right="16" bottom="16" left="16"/></padding>
+            <Region styleClass="card-accent" style="-fx-background-color: #6676e8;"/>
+            <Label text="Doctors" styleClass="stat-label"/>
+            <Label fx:id="totalDoctorsLabel" text="0" style="-fx-font-size: 32px; -fx-font-weight: 900; -fx-text-fill: #5267d8;"/>
+            <Label text="Clinical staff" styleClass="stat-note"/>
+        </VBox>
+        <VBox fx:id="cardReceptionists" spacing="9" styleClass="stat-card" HBox.hgrow="ALWAYS">
+            <padding><Insets top="16" right="16" bottom="16" left="16"/></padding>
+            <Region styleClass="card-accent" style="-fx-background-color: #f1b75d;"/>
+            <Label text="Receptionists" styleClass="stat-label"/>
+            <Label fx:id="totalReceptionistsLabel" text="0" style="-fx-font-size: 32px; -fx-font-weight: 900; -fx-text-fill: #a66813;"/>
+            <Label text="Front desk" styleClass="stat-note"/>
+        </VBox>
+        <VBox fx:id="cardPatients" spacing="9" styleClass="stat-card" HBox.hgrow="ALWAYS">
+            <padding><Insets top="16" right="16" bottom="16" left="16"/></padding>
+            <Region styleClass="card-accent" style="-fx-background-color: #32a067;"/>
+            <Label text="Patients" styleClass="stat-label"/>
+            <Label fx:id="totalPatientsLabel" text="0" style="-fx-font-size: 32px; -fx-font-weight: 900; -fx-text-fill: #17864b;"/>
+            <Label text="Registered profiles" styleClass="stat-note"/>
+        </VBox>
+    </HBox>
+
+    <HBox spacing="14">
+        <VBox fx:id="cardPending" spacing="9" styleClass="stat-card" HBox.hgrow="ALWAYS">
+            <padding><Insets top="16" right="16" bottom="16" left="16"/></padding>
+            <Region styleClass="card-accent" style="-fx-background-color: #f1b75d;"/>
+            <Label text="Pending" styleClass="stat-label"/>
+            <Label fx:id="pendingAppointmentsLabel" text="0" style="-fx-font-size: 32px; -fx-font-weight: 900; -fx-text-fill: #a66813;"/>
+            <Label text="Needs action" styleClass="stat-note"/>
+        </VBox>
+        <VBox fx:id="cardScheduled" spacing="9" styleClass="stat-card" HBox.hgrow="ALWAYS">
+            <padding><Insets top="16" right="16" bottom="16" left="16"/></padding>
+            <Region styleClass="card-accent" style="-fx-background-color: #26a6a6;"/>
+            <Label text="Scheduled" styleClass="stat-label"/>
+            <Label fx:id="scheduledAppointmentsLabel" text="0" styleClass="stat-value"/>
+            <Label text="Booked visits" styleClass="stat-note"/>
+        </VBox>
+        <VBox fx:id="cardCompleted" spacing="9" styleClass="stat-card" HBox.hgrow="ALWAYS">
+            <padding><Insets top="16" right="16" bottom="16" left="16"/></padding>
+            <Region styleClass="card-accent" style="-fx-background-color: #32a067;"/>
+            <Label text="Completed" styleClass="stat-label"/>
+            <Label fx:id="completedAppointmentsLabel" text="0" style="-fx-font-size: 32px; -fx-font-weight: 900; -fx-text-fill: #17864b;"/>
+            <Label text="Closed visits" styleClass="stat-note"/>
+        </VBox>
+        <VBox fx:id="cardAppointments" spacing="9" styleClass="stat-card" HBox.hgrow="ALWAYS">
+            <padding><Insets top="16" right="16" bottom="16" left="16"/></padding>
+            <Region styleClass="card-accent" style="-fx-background-color: #d86a5f;"/>
+            <Label text="Open Pipeline" styleClass="stat-label"/>
+            <Label fx:id="openPipelineLabel" text="0" style="-fx-font-size: 32px; -fx-font-weight: 900; -fx-text-fill: #b94d45;"/>
+            <Label text="Pending plus scheduled" styleClass="stat-note"/>
+        </VBox>
+    </HBox>
+
+    <HBox spacing="14">
+        <VBox fx:id="operationPanel" spacing="10" styleClass="panel" HBox.hgrow="ALWAYS">
+            <padding><Insets top="18" right="18" bottom="18" left="18"/></padding>
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Region prefWidth="10" prefHeight="10" styleClass="dashboard-dot-teal"/>
+                <Label text="Operations" styleClass="section-title"/>
+            </HBox>
+            <Label fx:id="operationStatusLabel" text="Loading dashboard..." wrapText="true"/>
+            <ProgressBar fx:id="operationProgress" maxWidth="Infinity"/>
+            <Label text="Clinic throughput" styleClass="stat-note"/>
+        </VBox>
+        <VBox fx:id="workforcePanel" spacing="10" styleClass="panel" HBox.hgrow="ALWAYS">
+            <padding><Insets top="18" right="18" bottom="18" left="18"/></padding>
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Region prefWidth="10" prefHeight="10" styleClass="dashboard-dot-indigo"/>
+                <Label text="Workforce" styleClass="section-title"/>
+            </HBox>
+            <ProgressBar fx:id="workforceProgress" maxWidth="Infinity" styleClass="progress-indigo"/>
+            <Label text="Staff coverage against today's appointment load" styleClass="muted" wrapText="true"/>
+        </VBox>
+        <VBox fx:id="pipelinePanel" spacing="10" styleClass="panel" HBox.hgrow="ALWAYS">
+            <padding><Insets top="18" right="18" bottom="18" left="18"/></padding>
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Region prefWidth="10" prefHeight="10" styleClass="dashboard-dot-green"/>
+                <Label text="Pipeline" styleClass="section-title"/>
+            </HBox>
+            <ProgressBar fx:id="pipelineProgress" maxWidth="Infinity" styleClass="progress-green"/>
+            <Label text="Completed share of active appointment work" styleClass="muted" wrapText="true"/>
+        </VBox>
+    </HBox>
+</VBox>
