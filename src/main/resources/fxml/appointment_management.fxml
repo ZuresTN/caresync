@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.caresync.controllers.AppointmentManagementController"
+            fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" styleClass="page-scroll">
+<content>
+<VBox spacing="18" styleClass="page management-page">
+    <HBox alignment="CENTER_LEFT" spacing="14">
+        <VBox spacing="4">
+            <Label text="Appointment Management" styleClass="page-title"/>
+            <Label text="Calendar view for clinic appointments. Doctors see only their assigned patient appointments." styleClass="page-subtitle"/>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS"/>
+        <VBox alignment="CENTER_RIGHT" spacing="3" styleClass="panel-quiet">
+            <padding><Insets top="10" right="14" bottom="10" left="14"/></padding>
+            <Label text="Calendar" styleClass="stat-label"/>
+            <Label text="Google ready" style="-fx-font-weight: 900; -fx-text-fill: #147f86;"/>
+        </VBox>
+    </HBox>
+
+    <HBox alignment="CENTER_LEFT" spacing="10" styleClass="panel-quiet appointment-filter-bar">
+        <padding><Insets top="12" right="12" bottom="12" left="12"/></padding>
+        <TextField fx:id="searchField" promptText="Search patient, doctor, or reason" HBox.hgrow="ALWAYS"/>
+        <ChoiceBox fx:id="filterStatusChoice" prefWidth="176" minWidth="176"/>
+        <DatePicker fx:id="filterDatePicker" promptText="Filter date" prefWidth="190" minWidth="190"/>
+        <Button text="Clear Filters" onAction="#clearFilters" styleClass="secondary-button"/>
+    </HBox>
+
+    <HBox spacing="16" VBox.vgrow="ALWAYS">
+        <VBox spacing="12" styleClass="panel" HBox.hgrow="ALWAYS">
+            <padding><Insets top="18" right="18" bottom="18" left="18"/></padding>
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <VBox spacing="2">
+                    <Label text="Appointments" styleClass="section-title"/>
+                    <Label text="Select a visit to edit, update status, or open it in Google Calendar" styleClass="muted"/>
+                </VBox>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button text="Open Google Calendar" onAction="#openSelectedInGoogleCalendar" styleClass="primary-button"/>
+            </HBox>
+            <TableView fx:id="appointmentTable" prefHeight="210" VBox.vgrow="NEVER">
+                <columns>
+                    <TableColumn fx:id="patientColumn" text="Patient" prefWidth="220"/>
+                    <TableColumn fx:id="doctorColumn" text="Doctor" prefWidth="220"/>
+                    <TableColumn fx:id="dateColumn" text="Date" prefWidth="130"/>
+                    <TableColumn fx:id="timeColumn" text="Time" prefWidth="110"/>
+                    <TableColumn fx:id="statusColumn" text="Status" prefWidth="140"/>
+                </columns>
+            </TableView>
+            <VBox spacing="8" VBox.vgrow="ALWAYS">
+                <HBox alignment="CENTER_LEFT" spacing="8">
+                    <Label fx:id="calendarTitleLabel" text="Calendar" styleClass="section-title"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Button text="Previous" onAction="#previousMonth" styleClass="secondary-button"/>
+                    <Button text="Today" onAction="#showToday" styleClass="secondary-button"/>
+                    <Button text="Next" onAction="#nextMonth" styleClass="secondary-button"/>
+                </HBox>
+                <GridPane fx:id="calendarGrid" hgap="8" vgap="8"/>
+            </VBox>
+        </VBox>
+
+        <VBox spacing="12" minWidth="412" prefWidth="440" styleClass="panel form-panel">
+            <padding><Insets top="18" right="18" bottom="18" left="18"/></padding>
+            <VBox spacing="3">
+                <Label text="Visit Details" styleClass="section-title"/>
+                <Label text="Save first for database tracking, or open the current form in Google Calendar" styleClass="muted" wrapText="true"/>
+            </VBox>
+            <ComboBox fx:id="patientCombo" promptText="Patient" maxWidth="Infinity"/>
+            <ComboBox fx:id="doctorCombo" promptText="Doctor" maxWidth="Infinity"/>
+            <Label fx:id="availabilityLabel" styleClass="muted" wrapText="true"/>
+            <HBox spacing="8">
+                <DatePicker fx:id="appointmentDatePicker" HBox.hgrow="ALWAYS"/>
+                <ChoiceBox fx:id="timeChoice" prefWidth="116"/>
+            </HBox>
+            <ChoiceBox fx:id="statusChoice" maxWidth="Infinity"/>
+            <TextField fx:id="reasonField" promptText="Reason"/>
+            <TextArea fx:id="notesArea" promptText="Notes" prefRowCount="4"/>
+            <HBox spacing="8">
+                <Button fx:id="saveAppointmentButton" text="Save" onAction="#saveAppointment" styleClass="primary-button"/>
+                <Button fx:id="clearFormButton" text="Clear" onAction="#clearForm" styleClass="secondary-button"/>
+                <Button fx:id="checkAvailabilityButton" text="Availability" onAction="#checkDoctorAvailability" styleClass="secondary-button"/>
+            </HBox>
+            <HBox spacing="8">
+                <Button fx:id="openFormGoogleButton" text="Google Calendar" onAction="#openFormInGoogleCalendar" styleClass="primary-button"/>
+                <Button fx:id="queueReminderButton" text="Queue Reminder" onAction="#queueReminder" styleClass="secondary-button"/>
+            </HBox>
+            <HBox spacing="8">
+                <Button text="Preview Reminder" onAction="#sendReminder" styleClass="secondary-button"/>
+                <Button text="Send Now" onAction="#sendReminderNow" styleClass="primary-button"/>
+                <Button fx:id="sendDueRemindersButton" text="Send Due" onAction="#sendDueReminders" styleClass="secondary-button"/>
+            </HBox>
+            <HBox spacing="8">
+                <Button fx:id="completeAppointmentButton" text="Complete" onAction="#completeAppointment" styleClass="secondary-button"/>
+                <Button fx:id="cancelAppointmentButton" text="Cancel" onAction="#cancelAppointment" styleClass="danger-button"/>
+            </HBox>
+            <Label fx:id="statusLabel" wrapText="true"/>
+        </VBox>
+    </HBox>
+</VBox>
+</content>
+</ScrollPane>
