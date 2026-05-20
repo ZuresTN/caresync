@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.caresync.controllers.ReceptionistDashboardController"
+      spacing="18" styleClass="page">
+    <HBox alignment="CENTER_LEFT" spacing="20" styleClass="dashboard-hero">
+        <padding><Insets top="22" right="24" bottom="22" left="24"/></padding>
+        <VBox spacing="6" HBox.hgrow="ALWAYS">
+            <Label text="Reception Dashboard" styleClass="dashboard-hero-title"/>
+            <Label text="Today&apos;s front desk flow, patient check-ins, and reminder queue" styleClass="dashboard-hero-copy"/>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS"/>
+        <StackPane prefWidth="96" prefHeight="96" maxWidth="96" maxHeight="96" styleClass="logo-badge, dashboard-logo-badge">
+            <ImageView fitWidth="68" fitHeight="68" preserveRatio="true" smooth="true" styleClass="logo-image">
+                <image>
+                    <Image url="@../images/caresync-logo-mark.png"/>
+                </image>
+            </ImageView>
+        </StackPane>
+    </HBox>
+    <GridPane hgap="14" vgap="14">
+        <VBox spacing="6" styleClass="stat-card" GridPane.columnIndex="0" GridPane.rowIndex="0">
+            <padding><Insets top="18" right="18" bottom="18" left="18"/></padding>
+            <Label text="Patients" styleClass="muted"/>
+            <Label fx:id="totalPatientsLabel" text="0" styleClass="stat-value"/>
+        </VBox>
+        <VBox spacing="6" styleClass="stat-card" GridPane.columnIndex="1" GridPane.rowIndex="0">
+            <padding><Insets top="18" right="18" bottom="18" left="18"/></padding>
+            <Label text="Today" styleClass="muted"/>
+            <Label fx:id="todayAppointmentsLabel" text="0" styleClass="stat-value"/>
+        </VBox>
+        <VBox spacing="6" styleClass="stat-card" GridPane.columnIndex="2" GridPane.rowIndex="0">
+            <padding><Insets top="18" right="18" bottom="18" left="18"/></padding>
+            <Label text="Scheduled" styleClass="muted"/>
+            <Label fx:id="scheduledLabel" text="0" styleClass="stat-value"/>
+        </VBox>
+        <VBox spacing="6" styleClass="stat-card" GridPane.columnIndex="3" GridPane.rowIndex="0">
+            <padding><Insets top="18" right="18" bottom="18" left="18"/></padding>
+            <Label text="Pending" styleClass="muted"/>
+            <Label fx:id="pendingAppointmentsLabel" text="0" styleClass="stat-value"/>
+        </VBox>
+    </GridPane>
+    <HBox spacing="14">
+        <VBox spacing="10" styleClass="panel" HBox.hgrow="ALWAYS">
+            <padding><Insets top="18" right="18" bottom="18" left="18"/></padding>
+            <Label text="Daily Flow" styleClass="section-title"/>
+            <Label fx:id="flowStatusLabel" text="Loading..." wrapText="true"/>
+            <ProgressBar fx:id="flowProgress" maxWidth="Infinity"/>
+        </VBox>
+        <VBox spacing="10" styleClass="panel" HBox.hgrow="ALWAYS">
+            <padding><Insets top="18" right="18" bottom="18" left="18"/></padding>
+            <Label text="Reminder Queue" styleClass="section-title"/>
+            <Label fx:id="reminderQueueLabel" text="0" styleClass="stat-value"/>
+            <ProgressBar fx:id="queueProgress" maxWidth="Infinity"/>
+        </VBox>
+    </HBox>
+    <VBox spacing="10" styleClass="panel" VBox.vgrow="ALWAYS">
+        <padding><Insets top="18" right="18" bottom="18" left="18"/></padding>
+        <Label text="Today's Appointments" styleClass="section-title"/>
+        <TableView fx:id="appointmentTable" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="patientColumn" text="Patient" prefWidth="260"/>
+                <TableColumn fx:id="doctorColumn" text="Doctor" prefWidth="260"/>
+                <TableColumn fx:id="timeColumn" text="Time" prefWidth="130"/>
+                <TableColumn fx:id="statusColumn" text="Status" prefWidth="150"/>
+            </columns>
+        </TableView>
+    </VBox>
+</VBox>

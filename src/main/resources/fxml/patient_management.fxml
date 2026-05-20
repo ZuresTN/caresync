@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.caresync.controllers.PatientManagementController"
+      spacing="18" styleClass="page management-page">
+    <HBox alignment="CENTER_LEFT" spacing="14">
+        <VBox spacing="4">
+            <Label text="Patient Management" styleClass="page-title"/>
+            <Label text="Maintain patient identity, reminder email, emergency, and clinical profile details" styleClass="page-subtitle"/>
+        </VBox>
+        <Region HBox.hgrow="ALWAYS"/>
+        <VBox alignment="CENTER_RIGHT" spacing="3" styleClass="panel-quiet">
+            <padding><Insets top="10" right="14" bottom="10" left="14"/></padding>
+            <Label text="Registry" styleClass="stat-label"/>
+            <Label text="Patient profiles" style="-fx-font-weight: 900; -fx-text-fill: #17864b;"/>
+        </VBox>
+    </HBox>
+    <HBox spacing="16" VBox.vgrow="ALWAYS">
+        <VBox spacing="12" styleClass="panel" HBox.hgrow="ALWAYS">
+            <padding><Insets top="18" right="18" bottom="18" left="18"/></padding>
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <VBox spacing="2">
+                    <Label text="Patients" styleClass="section-title"/>
+                    <Label text="Search and select a patient to edit the profile" styleClass="muted"/>
+                </VBox>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button text="New Patient" onAction="#clearForm" styleClass="secondary-button"/>
+            </HBox>
+            <TextField fx:id="searchField" promptText="Search patients"/>
+            <TableView fx:id="patientTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="nameColumn" text="Name" prefWidth="240"/>
+                    <TableColumn fx:id="phoneColumn" text="Phone" prefWidth="150"/>
+                    <TableColumn fx:id="emailColumn" text="Email" prefWidth="230"/>
+                    <TableColumn fx:id="bloodColumn" text="Blood" prefWidth="100"/>
+                </columns>
+            </TableView>
+        </VBox>
+        <VBox spacing="12" minWidth="380" prefWidth="410" styleClass="panel form-panel">
+            <padding><Insets top="18" right="18" bottom="18" left="18"/></padding>
+            <VBox spacing="3">
+                <Label text="Patient Profile" styleClass="section-title"/>
+                <Label text="Identity, contact, and risk notes" styleClass="muted"/>
+            </VBox>
+            <VBox spacing="10" styleClass="form-section">
+                <Label text="Identity" styleClass="stat-label"/>
+                <HBox spacing="8">
+                    <TextField fx:id="firstNameField" promptText="First name" HBox.hgrow="ALWAYS"/>
+                    <TextField fx:id="lastNameField" promptText="Last name" HBox.hgrow="ALWAYS"/>
+                </HBox>
+                <ChoiceBox fx:id="genderChoice" maxWidth="Infinity"/>
+                <DatePicker fx:id="dobPicker" promptText="Date of birth" maxWidth="Infinity"/>
+            </VBox>
+            <VBox spacing="10" styleClass="form-section">
+                <Label text="Contact and Reminders" styleClass="stat-label"/>
+                <TextField fx:id="phoneField" promptText="Phone"/>
+                <TextField fx:id="emailField" promptText="Reminder email"/>
+                <TextArea fx:id="addressArea" promptText="Address" prefRowCount="2"/>
+            </VBox>
+            <VBox spacing="10" styleClass="form-section">
+                <Label text="Clinical Notes" styleClass="stat-label"/>
+                <TextField fx:id="bloodGroupField" promptText="Blood group"/>
+                <TextField fx:id="allergiesField" promptText="Allergies"/>
+                <TextField fx:id="emergencyField" promptText="Emergency contact"/>
+            </VBox>
+            <HBox spacing="8">
+                <Button text="Save" onAction="#savePatient" styleClass="primary-button"/>
+                <Button text="Clear" onAction="#clearForm" styleClass="secondary-button"/>
+                <Button text="Delete" onAction="#deletePatient" styleClass="danger-button"/>
+            </HBox>
+            <Label fx:id="statusLabel" wrapText="true"/>
+        </VBox>
+    </HBox>
+</VBox>
